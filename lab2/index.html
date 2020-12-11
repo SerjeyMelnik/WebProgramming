@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Страница входа</title>
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="script.js"></script>
+	<style>
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+</style>
+</head>
+<body>
+	<div class="main-wrapper">
+		<div class="form-wrapper">
+			<div class="logo"><img src="img/logo-dark.png" width="50%"></div>
+			<div class="form-block">
+				<p><strong>Вход</strong> в Search-Ok</p>
+				<p>Бесплатный доступ к статистике</p>
+				<form action="" method="post" id="form">
+				<div class="input-wrapper">
+					<input type="email" name="email" placeholder="Укажите адрес электронной почты">
+					<div class="errorInputBlock"><span>Обязательное поле</span></div>
+				</div>
+				<div class="input-wrapper">
+					<input type="password" name="password" placeholder="Введите пароль">
+					<div class="errorInputBlock"><span>Обязательное поле</span></div>
+				</div>
+				
+					<div class="errorInputData"><span>&#9888;Неправильный логин или пароль проверьте данные</span></div>
+				
+				<div class="input-wrapper">
+					<input type="submit" name="sign-up" value="Войти">
+				</div>
+				</form>
+				<hr>
+				<ul>
+					<li><a href="#">Не удается войти?</a></li>
+					<li><a href="#">Зарегистрировать аккаунт</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="errorBlock"> 
+			<span>Пожалуйста, заполните все обязательные поля</span>
+			 	<span id="close">&#215;</span></div>
+	</div>
+	</div>
+	<div class="footer">
+		<div class="links-wrapper">
+			<div class="link"><a href="#">Тарифы</a></div>
+			<div class="link"><a href="#">FAQ</a></div>
+			<div class="link"><a href="#">Оставить отзыв</a></div>
+			<div class="link"><a href="#">Блог</a></div>
+			<div class="link"><a href="#">Контакты</a></div>
+		</div>
+		<div class="logo">
+			<img src="img/logo-light.png" width="10%">
+		</div>
+	</div>
+</body>
+</html>
