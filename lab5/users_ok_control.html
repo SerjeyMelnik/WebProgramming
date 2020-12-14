@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <title>Пареметри аккаунтов ОК</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> -->
+    </head>
+
+    <body>
+	<table class="table">
+            <thead>
+                <tr>
+                <th scope="col">id</th>
+                <th scope="col">Аккаунти для парсинга</th>
+                <th scope="col">Пол/возраст/гео</th>
+                <th scope="col">Статус</th>
+                <th scope="col">Количество спарсених постов</th>
+                <th scope="col">Количество спарсених постов за вчера</th>
+                <th scope="col">Последний парсинг</th>
+                <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if data["accounts_info"]%}
+                    {% for acc in data["accounts_info"]%}
+                        <form method="post">
+                            <tr>
+                                <td>{{acc['accounts'].id}} <div style="display:none"><input type="hidden" name="identificator" value="{{acc['accounts'].id}}"/></div></td>
+                                <td><input type="text" name="info" value="{{acc['accounts'].nickname}};{{acc['accounts'].password}};{{acc['accounts'].proxy_host}}:{{acc['accounts'].proxy_port}}:{{acc['accounts'].proxy_user}}:{{acc['accounts'].proxy_pass}}"></td>
+                                <td><input type="text" name="sex_age_geo" value="{% if acc['accounts'].sex_id == 1 %}м{% elif acc['accounts'].sex_id == 2 %}ж{% else %}{{acc['accounts'].sex_id}}{% endif %};{{acc['accounts'].age}};{{acc['accounts'].geodata}}"></td>
+                                <td>{% if acc['accounts'].status_work_id == 1 %}
+                                Работает
+                                {% else %}
+                                Не работает
+                                {% endif %}</td>
+                                <td>{{acc["statistics"][0]}}</td>
+                                <td>{{acc["statistics"][1]}}</td>
+                                <td>{{acc['accounts'].last_parsing}}</td>
+                                <td><button type="submit" class="btn btn-primary btn-sm">Сохранить</button> </td>
+                            </tr>
+                        </form>
+                    {% endfor %}
+                {% endif %}
+                <form method="post">
+                    <tr>
+                    <td><div style="display:none"><input type="hidden" name="identificator" value="new"/></div></td>
+                    <td><input type="text" name="info" placeholder="login;password;proxy_host:proxy_port:name:password" value=""></td>
+                    <td><input type="text" name="sex_age_geo" placeholder="Пол;возраст;гео" value=""></td>
+                    <td>Не подключен</td>
+                    <td>0</td>
+                    <td></td>
+                    <td></td>
+                    <td><button type="submit" class="btn btn-primary btn-sm">Создать</button> </td>
+                    </tr>
+                </form>
+            </tbody>
+        </table>
+        <b>Инструкция: </b>
+        <p>Чтобы удалить аккаунт однокласников -- удалите все значение в поле и нажмите сохранить</p>
+        <p>Чтобы изменить аккаунт однокласников -- измените все значение в поле и нажмите сохранить</p>
+
+        <form method="post">
+            <div class="mx-auto"  style="width: 300px;">
+                <b>Управление парсингом: </b>
+                <button type="submit" name="parsing_status" value="change" class="btn btn-danger">{{data["button_status"]}}</button>
+            </div>
+        </form>
+
+        <a class="btn btn-dark" href="/content">Рекламные посты</a>
+    </body>
+</html>
